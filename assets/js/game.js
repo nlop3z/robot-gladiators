@@ -17,7 +17,6 @@ var fight = function (enemy) {
         break;
       }
     }
-
     // generate random damage value based on player's attack power
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
     enemy.health = Math.max(0, enemy.health - damage);
@@ -34,7 +33,8 @@ var fight = function (enemy) {
 
       // leave while() loop since enemy is dead
       break;
-    } else {
+    } 
+    else {
       window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
     }
 
@@ -50,69 +50,23 @@ var fight = function (enemy) {
       window.alert(playerInfo.name + ' has died!');
       // leave while() loop if player is dead
       break;
-    } else {
+    } 
+    else {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
   }
 };
-//player info object
-var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
-  health: 100,
-  attack: 10,
-  money: 10,
-  reset: function () {
-    this.health = 100;
-    this.money = 10;
-    this.attack = 10;
-  }, // comma!
-  refillHealth: function () {
-    if (this.money >= 7) {
-      window.alert("Refilling player's health by 20 for 7 dollars.");
-      this.health += 20;
-      this.money -= 7;
-    }
-    else {
-      window.alert("You don't have enough money!");
-    }
-  }, // comma!
-  upgradeAttack: function () {
-    if (this.money >= 7) {
-      window.alert("Upgrading player's attack by 6 for 7 dollars.");
-      this.attack += 6;
-      this.money -= 7;
-    }
-    else {
-      window.alert("You don't have enough money!");
-    }
-  }
-// enemy info array
-var enemyInfo = [
-    {
-      name: "Roborto",
-      attack: randomNumber(10, 14)
-    },
-    {
-      name: "Amy Android",
-      attack: randomNumber(10, 14)
-    },
-    {
-      name: "Robo Trumble",
-      attack: randomNumber(10, 14)
-    }
-  ];
   // function to start a new game
   // start the game when the page loads startGame();
   var startGame = function () {
     //reset player stats
-    playerInfo.reset = 100;
-    playerInfo.reset = 10;
-    playerInfo.reset = 10;
+    playerInfo.reset();
     //debugger;
     for (var i = 0; i < enemyInfo.length; i++) {
       if (playerInfo.health > 0) {
         // let user know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
         window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+        debugger;
         // pick new enemy to fight based on the index of the enemyNames array
         var pickedEnemyObj = enemyInfo[i];
         // reset enemy.health before starting new fight
@@ -189,3 +143,51 @@ var enemyInfo = [
 
     return value;
   };
+  //player info object
+var playerInfo = {
+  name: window.prompt("What is your robot's name?"),
+  health: 100,
+  attack: 10,
+  money: 10,
+  reset: function () {
+    this.health = 100;
+    this.money = 10;
+    this.attack = 10;
+  }, // comma!
+  refillHealth: function () {
+    if (this.money >= 7) {
+      window.alert("Refilling player's health by 20 for 7 dollars.");
+      this.health += 20;
+      this.money -= 7;
+    }
+    else {
+      window.alert("You don't have enough money!");
+    }
+  }, // comma!
+  upgradeAttack: function () {
+    if (this.money >= 7) {
+      window.alert("Upgrading player's attack by 6 for 7 dollars.");
+      this.attack += 6;
+      this.money -= 7;
+    }
+    else {
+      window.alert("You don't have enough money!");
+    }
+  }
+};
+// enemy info array
+var enemyInfo = [
+    {
+      name: "Roborto",
+      attack: randomNumber(10, 14)
+    },
+    {
+      name: "Amy Android",
+      attack: randomNumber(10, 14)
+    },
+    {
+      name: "Robo Trumble",
+      attack: randomNumber(10, 14)
+    }
+  ];
+  startGame();
